@@ -27,7 +27,6 @@ export default function ListVideo({videos}) {
       sec = 0;
     duration = duration.substring(2).split('');
     let durations = duration.join('');
-    console.log(duration);
     if (duration.some((item) => item === 'H')) {
       hour = durations.split('H')[0];
       durations = durations.split('H')[1];

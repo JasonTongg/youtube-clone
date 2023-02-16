@@ -5,6 +5,7 @@ import {AiOutlineSearch} from 'react-icons/ai';
 import {BsPersonCircle} from 'react-icons/bs';
 import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
 import {useState} from 'react';
+import Link from 'next/link';
 
 export default function Navbar({category}) {
   let [categoryActive, setCategoryActive] = useState(0);
@@ -56,12 +57,11 @@ export default function Navbar({category}) {
           onScroll={cekScroll}
         >
           {['All', ...category].map((item, idx) => (
-            <button
-              key={idx}
-              className={idx === categoryActive && styles.active}
-            >
-              {item}
-            </button>
+            <Link href={`/search/${item}`} key={idx}>
+              <button className={idx === categoryActive && styles.active}>
+                {item}
+              </button>
+            </Link>
           ))}
         </div>
         {scroll[1] && (
