@@ -6,10 +6,12 @@ import {BsPersonCircle} from 'react-icons/bs';
 import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
 import {useState} from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 
 export default function Navbar({category}) {
   let [categoryActive, setCategoryActive] = useState(0);
   let [scroll, setScroll] = useState([false, true]);
+  let [search, setSearch] = useState('');
 
   let cekScroll = (e) => {
     let left = e.target.scrollLeft;
@@ -27,19 +29,36 @@ export default function Navbar({category}) {
     }
   };
 
+  let searchFunction = (e) => {
+    e.preventDefault();
+    Router.push(`/search/${search}`);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
-        <div className={styles.logo}>
+        <div
+          className={styles.logo}
+          onClick={() => {
+            Router.replace('/');
+          }}
+        >
           <Image src={Logo} alt="logo" height={50} width={50} />
           <h2>Youtube</h2>
         </div>
-        <div className={styles.search}>
-          <input type="text" placeholder="Search" />
+        <form className={styles.search} onSubmit={searchFunction}>
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={(e) => {
+              setSearch(e.target.value);
+              console.log(e.target.value);
+            }}
+          />
           <div className={styles.searchContainer}>
             <AiOutlineSearch></AiOutlineSearch>
           </div>
-        </div>
+        </form>
         <div className={styles.profile}>
           <BsPersonCircle></BsPersonCircle>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '@/Components/Navbar/Navbar';
 import SideBar from '@/Components/SideBar/SideBar';
-import ListVideo from '@/Components/ListVideo/ListVideo';
+import ListVideo from '@/Components/searchVideo/ListVideo';
 import Styles from '../../styles/Home.module.css';
 
 export async function getStaticPaths() {
@@ -30,23 +30,30 @@ export async function getStaticProps(context) {
   );
 
   category = await category.json();
+
   let {searchId} = context.params;
+
+  let searchVideo = await fetch(
+    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${searchId}&type=video&maxResults=100&key=AIzaSyAAqzOZ3dCCyrwUEJoDsyiS5XJjI0zc6ks`
+  );
+
+  searchVideo = await searchVideo.json();
 
   return {
     props: {
       category: category.items.map((item) => item.snippet.title),
-      id: searchId,
+      videos: searchVideo.items,
     },
   };
 }
 
-export default function searchId({category}) {
+export default function searchId({category, videos}) {
   return (
     <div className={Styles.homeContainer}>
       <SideBar></SideBar>
       <div className={Styles.contentContainer}>
         <Navbar category={category}></Navbar>
-        {/* <ListVideo videos={videos}></ListVideo> */}
+        <ListVideo videos={videos}></ListVideo>
       </div>
     </div>
   );
