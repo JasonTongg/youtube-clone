@@ -60,3 +60,20 @@
   color: rgb(129, 129, 129);
   font-size: 1rem;
 }
+
+.profile,
+.loading {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 100px !important;
+}
+
+.loading {
+  background-color: gray;
+}
+
+.videoInfo {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1rem;
+}

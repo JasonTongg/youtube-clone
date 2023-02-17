@@ -52,7 +52,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 5px;
+  margin-block: 10px;
   font-size: 13px;
 }
 
@@ -63,4 +63,20 @@
 
 .title {
   padding-block: 10px;
+}
+
+.profile,
+.loading {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 100px !important;
+}
+
+.profile {
+  margin-right: 8px;
+  margin-bottom: 0 !important;
+}
+
+.loading {
+  background-color: gray;
 }

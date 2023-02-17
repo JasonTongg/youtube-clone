@@ -3,20 +3,23 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 let api_key = 'AIzaSyAAqzOZ3dCCyrwUEJoDsyiS5XJjI0zc6ks';
 
 let initialState = {
-  listVideo: [],
+  channelProfile: {
+    item: [],
+    isLoading: true,
+  },
 };
 
-export let getPopularVideo = createAsyncThunk(
+export let getChannelsInfo = createAsyncThunk(
   'video/popular',
   async (_, thunkAPI) => {
     try {
       let data = await fetch(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&maxResults=100&key=${api_key}`
+        `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UCkB_AwGXxPAKdahxGHpeC4Q&key=${api_key}`
       );
       data = await data.json();
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue('Error Fetch Popular Videos');
+      return thunkAPI.rejectWithValue('Error Fetch Channels Info');
     }
   }
 );
@@ -25,8 +28,16 @@ let Videos = createSlice({
   name: 'Videos',
   initialState,
   extraReducers: {
-    [getPopularVideo.fulfilled]: (state, {payload}) => {
-      state.listVideo = payload;
+    [getChannelsInfo.pending]: (state) => {
+      state.channelProfile.isLoading = true;
+    },
+    [getChannelsInfo.fulfilled]: (state, {payload}) => {
+      state.channelProfile.isLoading = false;
+      state.channelProfile.item = payload;
+      console.log(payload);
+    },
+    [getChannelsInfo.rejected]: (state) => {
+      state.channelProfile.isLoading = false;
     },
   },
 });

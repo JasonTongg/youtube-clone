@@ -6,10 +6,11 @@ import {BsPersonCircle} from 'react-icons/bs';
 import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
 import {useState} from 'react';
 import Link from 'next/link';
-import Router from 'next/router';
+import Router, {useRouter} from 'next/router';
 
 export default function Navbar({category}) {
-  let [categoryActive, setCategoryActive] = useState(0);
+  let Routers = useRouter();
+  let {searchId} = Routers.query;
   let [scroll, setScroll] = useState([false, true]);
   let [search, setSearch] = useState('');
 
@@ -75,9 +76,19 @@ export default function Navbar({category}) {
           id="buttonScroll"
           onScroll={cekScroll}
         >
-          {['All', ...category].map((item, idx) => (
+          {Routers.pathname === '/' ? (
+            <Link href={'/'}>
+              <button className={styles.active}>All</button>
+            </Link>
+          ) : (
+            <Link href={'/'}>
+              <button>All</button>
+            </Link>
+          )}
+
+          {category.map((item, idx) => (
             <Link href={`/search/${item}`} key={idx}>
-              <button className={idx === categoryActive && styles.active}>
+              <button className={item === searchId ? styles.active : ''}>
                 {item}
               </button>
             </Link>
