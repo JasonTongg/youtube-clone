@@ -132,12 +132,16 @@ export default function SearchVideo({item, idx}) {
             height={750}
             width={200}
           />
-          <p>{processDuration(videoInfo.contentDetails?.duration)}</p>
+          {videoInfo && (
+            <p>{processDuration(videoInfo.contentDetails?.duration)}</p>
+          )}
         </div>
         <div class={styles.itemInfo}>
           <h3>{item.snippet.title}</h3>
           <div className={styles.info}>
-            <p>{intToString(videoInfo.statistics?.viewCount)} views</p>
+            {videoInfo && (
+              <p>{intToString(videoInfo.statistics?.viewCount)} views</p>
+            )}
             <BsDot></BsDot>
             <p>{dateDifferent(item.snippet?.publishedAt)}</p>
           </div>

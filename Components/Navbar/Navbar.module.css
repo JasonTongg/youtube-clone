@@ -4,8 +4,13 @@
   gap: 10px;
   justify-content: center;
   overflow: hidden;
-  max-width: 100%;
-  width: 100%;
+  max-width: calc(100vw - 70px - 0.6rem);
+  width: calc(100vw - 70px);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  background: black;
 }
 
 .headerContainer {
@@ -84,6 +89,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   width: 100%;
+  padding-bottom: 1rem;
 }
 
 .buttonContainer::-webkit-scrollbar {

@@ -4,6 +4,8 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   padding: 1rem 4rem;
+  row-gap: 3rem;
+  margin-top: 138.8px;
 }
 
 .itemContainer {

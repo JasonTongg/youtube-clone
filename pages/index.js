@@ -2,6 +2,7 @@ import Navbar from '../Components/Navbar/Navbar';
 import ListVideo from '@/Components/ListVideo/ListVideo';
 import SideBar from '@/Components/SideBar/SideBar';
 import Styles from '../styles/Home.module.css';
+import styless from '../Components/SideBar/SideBar.module.css';
 
 export async function getStaticProps(context) {
   let getVideo = await fetch(
@@ -18,8 +19,10 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      videos: getVideo.items.map((item) => item),
-      category: category.items.map((item) => item.snippet.title),
+      videos: getVideo.items,
+      category:
+        JSON.stringify(category).items?.map((item) => item.snippet.title) ||
+        null,
     },
   };
 }
@@ -28,6 +31,7 @@ export default function Home({videos, category}) {
   return (
     <div className={Styles.homeContainer}>
       <SideBar></SideBar>
+      <div className={styless.containerss}></div>
       <div className={Styles.contentContainer}>
         <Navbar category={category}></Navbar>
         <ListVideo videos={videos}></ListVideo>

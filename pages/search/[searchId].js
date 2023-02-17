@@ -3,6 +3,7 @@ import Navbar from '@/Components/Navbar/Navbar';
 import SideBar from '@/Components/SideBar/SideBar';
 import ListVideo from '@/Components/searchVideo/ListVideo';
 import Styles from '../../styles/Home.module.css';
+import styless from '../Components/SideBar/SideBar.module.css';
 
 export async function getStaticPaths() {
   let category = await fetch(
@@ -51,6 +52,7 @@ export default function searchId({category, videos}) {
   return (
     <div className={Styles.homeContainer}>
       <SideBar></SideBar>
+      <div className={styless.containerss}></div>
       <div className={Styles.contentContainer}>
         <Navbar category={category}></Navbar>
         <ListVideo videos={videos}></ListVideo>
