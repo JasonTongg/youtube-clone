@@ -122,6 +122,8 @@ export default function Video({item, idx}) {
             src={
               item.snippet?.thumbnails?.maxres?.url
                 ? item.snippet?.thumbnails?.maxres?.url
+                : item.snippet?.thumbnails?.high?.url
+                ? item.snippet?.thumbnails?.high?.url
                 : defaultThumbnail
             }
             alt="thumbnails"
@@ -134,13 +136,14 @@ export default function Video({item, idx}) {
           {isLoading ? (
             <div className={styles.loading}></div>
           ) : (
-            <Image
-              src={profile}
-              height={50}
-              width={50}
-              alt="Channel Profile"
-              className={styles.profile}
-            />
+            // <Image
+            //   src={profile}
+            //   height={50}
+            //   width={50}
+            //   alt="Channel Profile"
+            //   className={styles.profile}
+            // />
+            <div className={styles.loading}></div>
           )}
           <div>
             <h3>

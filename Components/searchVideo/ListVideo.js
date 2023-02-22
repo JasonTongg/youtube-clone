@@ -2,7 +2,6 @@ import styles from './ListVideo.module.css';
 import SearchVideo from '../Video/SearchVideo';
 
 export default function ListVideo({videos}) {
-  console.log(videos);
 
   return (
     <div className={styles.container}>

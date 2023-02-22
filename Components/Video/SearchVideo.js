@@ -27,6 +27,7 @@ export default function SearchVideo({item, idx}) {
 
       dataProfile = await dataProfile.json();
       setProfile(dataProfile.items[0].snippet.thumbnails.high.url);
+      console.log(dataProfile.items[0].snippet.thumbnails.high.url);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -48,6 +49,7 @@ export default function SearchVideo({item, idx}) {
   }, [getVideoInfo]);
 
   let processDuration = (duration) => {
+    // console.log(duration);
     let hour = 0,
       min = 0,
       sec = 0;
@@ -132,16 +134,16 @@ export default function SearchVideo({item, idx}) {
             height={750}
             width={200}
           />
-          {videoInfo && (
-            <p>{processDuration(videoInfo.contentDetails?.duration)}</p>
-          )}
+          {/* {videoInfo.contentDetails?.duration && (
+            <p>{processDuration(videoInfo?.contentDetails?.duration)}</p>
+          )} */}
         </div>
         <div class={styles.itemInfo}>
           <h3>{item.snippet.title}</h3>
           <div className={styles.info}>
-            {videoInfo && (
+            {/* {videoInfo && (
               <p>{intToString(videoInfo.statistics?.viewCount)} views</p>
-            )}
+            )} */}
             <BsDot></BsDot>
             <p>{dateDifferent(item.snippet?.publishedAt)}</p>
           </div>
@@ -156,6 +158,7 @@ export default function SearchVideo({item, idx}) {
                 alt="Channel Profile"
                 className={styles.profile}
               />
+              // <div className={styles.loading}></div>
             )}
             <p>{item.snippet?.channelTitle}</p>
             <BsCheckCircleFill

@@ -34,7 +34,6 @@ let Videos = createSlice({
     [getChannelsInfo.fulfilled]: (state, {payload}) => {
       state.channelProfile.isLoading = false;
       state.channelProfile.item = payload;
-      console.log(payload);
     },
     [getChannelsInfo.rejected]: (state) => {
       state.channelProfile.isLoading = false;

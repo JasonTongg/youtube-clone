@@ -3,11 +3,11 @@ import Navbar from '@/Components/Navbar/Navbar';
 import SideBar from '@/Components/SideBar/SideBar';
 import ListVideo from '@/Components/searchVideo/ListVideo';
 import Styles from '../../styles/Home.module.css';
-import styless from '../Components/SideBar/SideBar.module.css';
+import styless from '../../Components/SideBar/SideBar.module.css';
 
 export async function getStaticPaths() {
   let category = await fetch(
-    'https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key=AIzaSyAAqzOZ3dCCyrwUEJoDsyiS5XJjI0zc6ks'
+    `https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key=${process.env.API_KEY}`
   );
 
   category = await category.json();
@@ -27,7 +27,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   let category = await fetch(
-    'https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key=AIzaSyAAqzOZ3dCCyrwUEJoDsyiS5XJjI0zc6ks'
+    `https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key=${process.env.API_KEY}`
   );
 
   category = await category.json();
@@ -35,7 +35,7 @@ export async function getStaticProps(context) {
   let {searchId} = context.params;
 
   let searchVideo = await fetch(
-    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${searchId}&type=video&maxResults=100&key=AIzaSyAAqzOZ3dCCyrwUEJoDsyiS5XJjI0zc6ks`
+    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${searchId}&type=video&maxResults=100&key=${process.env.API_KEY}`
   );
 
   searchVideo = await searchVideo.json();

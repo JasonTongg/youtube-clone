@@ -6,23 +6,22 @@ import styless from '../Components/SideBar/SideBar.module.css';
 
 export async function getStaticProps(context) {
   let getVideo = await fetch(
-    'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=ID&maxResults=100&key=AIzaSyAAqzOZ3dCCyrwUEJoDsyiS5XJjI0zc6ks'
+    `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=ID&maxResults=100&key=${process.env.API_KEY}`
   );
 
   getVideo = await getVideo.json();
 
   let category = await fetch(
-    'https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key=AIzaSyAAqzOZ3dCCyrwUEJoDsyiS5XJjI0zc6ks'
+    `https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=US&key=${process.env.API_KEY}`
   );
 
   category = await category.json();
 
+
   return {
     props: {
-      videos: getVideo.items,
-      category:
-        JSON.stringify(category).items?.map((item) => item.snippet.title) ||
-        null,
+      videos: getVideo.items.map((item) => item),
+      category: category.items?.map((item) => item.snippet.title),
     },
   };
 }

@@ -53,7 +53,6 @@ export default function Navbar({category}) {
             placeholder="Search"
             onChange={(e) => {
               setSearch(e.target.value);
-              console.log(e.target.value);
             }}
           />
           <div className={styles.searchContainer}>
