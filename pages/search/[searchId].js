@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Navbar from '@/Components/Navbar/Navbar';
 import SideBar from '@/Components/SideBar/SideBar';
 import ListVideo from '@/Components/searchVideo/ListVideo';
+import Video from '@/Components/ListVideo/ListVideo';
 import Styles from '../../styles/Home.module.css';
 import styless from '../../Components/SideBar/SideBar.module.css';
 
@@ -48,14 +49,25 @@ export async function getStaticProps(context) {
   };
 }
 
-export default function searchId({category, videos}) {
+export default function SearchId({category, videos}) {
+  let [show, setShow] = useState(true);
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 900) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+    });
+  }, []);
   return (
     <div className={Styles.homeContainer}>
       <SideBar></SideBar>
       <div className={styless.containerss}></div>
       <div className={Styles.contentContainer}>
         <Navbar category={category}></Navbar>
-        <ListVideo videos={videos}></ListVideo>
+        {show === true && <ListVideo videos={videos}></ListVideo>}
+        {show === false && <Video videos={videos}></Video>}
       </div>
     </div>
   );

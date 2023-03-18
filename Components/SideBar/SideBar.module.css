@@ -69,3 +69,10 @@
 .item svg {
   font-size: 1.3rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .container,
+  .containerss {
+    display: none;
+  }
+}

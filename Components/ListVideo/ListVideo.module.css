@@ -79,3 +79,10 @@
   grid-template-columns: 40px 1fr;
   gap: 1rem;
 }
+
+@media only screen and (max-width: 500px) {
+  .container {
+    padding-inline: 1rem;
+    grid-template-columns: 100%;
+  }
+}

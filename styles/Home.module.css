@@ -13,3 +13,9 @@
 .contentContainer::-webkit-scrollbar {
   display: none;
 }
+
+@media only screen and (max-width: 600px) {
+  .homeContainer {
+    grid-template-columns: 1fr;
+  }
+}
