@@ -136,14 +136,14 @@ export default function Video({item, idx}) {
           {isLoading ? (
             <div className={styles.loading}></div>
           ) : (
-            // <Image
-            //   src={profile}
-            //   height={50}
-            //   width={50}
-            //   alt="Channel Profile"
-            //   className={styles.profile}
-            // />
-            <div className={styles.loading}></div>
+            <Image
+              src={profile}
+              height={50}
+              width={50}
+              alt="Channel Profile"
+              className={styles.profile}
+            />
+            // <div className={styles.loading}></div>
           )}
           <div>
             <h3>
